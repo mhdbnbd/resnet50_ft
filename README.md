@@ -153,16 +153,11 @@ predict_batchwise(mnist_model, svhn_testloader)
 
 Running the parameters from the examples above (e.g. num_epochs, lr ...) the following results are returned :
 
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
-
-A&#8594W      | D&#8594W      | W&#8594D      | A&#8594D      | D&#8594A      | W&#8594A      | Avg
+A &#8594; W      | D &#8594; W      | W &#8594; D      | A &#8594; D      | D &#8594; A      | W &#8594; A      | Avg
 ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | -------------
 76.9          | 91.1          | 96.8          | 81.7          | 55.3          | 57.4          | 76.5
 
-SVHN&#8594MNIST      | MNIST&#8594SVHN     | Avg
+SVHN &#8594; MNIST      | MNIST &#8594; SVHN     | Avg
 -------------        | -------------       | ------------- 
 67.9                 | 20                  | 43.95      
 
