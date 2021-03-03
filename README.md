@@ -1,21 +1,20 @@
-# resnet50_ft
+## resnet50_ft ##
 Finetuning Resnet50 and benchmarking it on transfer tasks within Office31 and between SVHN and MNIST
 
-# Requirements #
+## Requirements ##
 
-matplotlib==3.2.2
-numpy==1.19.5
-opencv_contrib_python==4.1.2.30
-scipy==1.4.1
-requests==2.23.0
-torchvision==0.8.2+cu101
+matplotlib==3.2.2  
+numpy==1.19.5  
+opencv_contrib_python==4.1.2.30  
+scipy==1.4.1  
+requests==2.23.0  
+torchvision==0.8.2+cu101  
 torch==1.7.1+cu101
 
-# Run code #
+## Run code ##
 
 
-
-## load model ##
+1. load model
 
 ```python
 import torch
@@ -29,7 +28,7 @@ Model_Construct(num_classes).to(device)
   """
 ```
 
-## load data ##
+2. load data
 
 ```python
 from data.preprocess import load_ds
@@ -55,13 +54,13 @@ load_ds(datasets, batch_size, num_workers, grayscale, normalize, split_path, ds_
   """
   ```
 
-## define training data as dictionary ##
+3. define training data as dictionary
 
 ```python
 source_dataloader = {'train': amazon_halfloader, 'val': amazon_half2loader}
 ```
 
-## training and testing ##
+4. training and testing
 
 ```python
 from train import train_model, predict_batchwise
@@ -86,17 +85,12 @@ predict_batchwise(model, dataloader)
 
 """
       -----------------
-      model: model to train
-      dataloaders: dictionary of 'train'/'val' dataloaders
-      num_epochs: number of epochs
-      lr: learning rate for the optimizer Adagrad
-      lr_decay: learning rate decay for the optimizer Adagrad
-      weight_decay: weight decay for the optimizer Adagrad
-      instNorm: if True applies torch.nn.InstanceNorm2d to input instances (recommended for 'mnist/svhn')
+      model: trained model
+      dataloader: target test dataloader
 
       Returns:
       -----------------
-      trained model and validation accuracies history
+      predictions accuracy
     """
    ```
     
@@ -134,7 +128,7 @@ The following benchmarks the model on SVHN/MNIST (MNIST to SVHN)
 model_10 = Model_Construct(num_classes=10).to(device)
 #load dataloaders
 mnist_trainloader, mnist_testloader, svhn_trainloader, svhn_testloader = load_ds(datasets="mnist/svhn", batch_size=64, num_workers=4, grayscale = True, normalize = False)
-print("--Source: mnist--")
+print("--Source: MNIST--")
 #train
 source_dataloader = {'train': mnist_trainloader, 'val': mnist_testloader}
 mnist_model, mnist_hist = train_model(model_10, source_dataloader, num_epochs=40, lr=0.00025, weight_decay=0, instNorm=True)
@@ -144,14 +138,14 @@ path = F"/{model_save_name}"
 torch.save(mnist_model.state_dict(), path)
 print("model saved")
 #test
-print("--Target: svhn--")
-print("-Prediction on svhn:")
+print("--Target: SVHN--")
+print("-Prediction on SVHN:")
 predict_batchwise(mnist_model, svhn_testloader)
 ```
 
 # Performance #
 
-Running the parameters from the examples above (e.g. num_epochs, lr ...) the following results are returned :
+Running the parameters from the examples above (e.g. num_epochs, lr ...), the following results are returned :
 
 A &#8594; W      | D &#8594; W      | W &#8594; D      | A &#8594; D      | D &#8594; A      | W &#8594; A      | Avg
 ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | -------------
