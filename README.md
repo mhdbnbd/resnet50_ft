@@ -92,14 +92,14 @@ predict_batchwise(model, dataloader)
     
 # Example # 
 
-Assuming the code is cloned on "/content/drive/MyDrive", the following benchmarks the model on Office31 (Amazon(A) to Webcam(W) and DSLR(D))
+Assuming the code is cloned on "/content", the following benchmarks the model on Office31 (Amazon(A) to Webcam(W) and DSLR(D))
 
 ```python
 print("----Office31----")
 # load model
 model_31 = Model_Construct(num_classes=31).to(device)
 # load dataloaders
-amazon_loader, amazon_halfloader, amazon_half2loader, webcam_loader, webcam_halfloader, webcam_half2loader, dslr_loader, dslr_halfloader, dslr_half2loader = load_ds(datasets="office31", batch_size=64, num_workers=4, grayscale=False, normalize=False, split_path=os.path.join("/content/drive/MyDrive", "data/splits_structure"), ds_path=os.path.join("/content/drive/MyDrive", "data/Office31"))
+amazon_loader, amazon_halfloader, amazon_half2loader, webcam_loader, webcam_halfloader, webcam_half2loader, dslr_loader, dslr_halfloader, dslr_half2loader = load_ds(datasets="office31", batch_size=64, num_workers=4, grayscale=False, normalize=False, split_path=os.path.join("/content", "data/splits_structure"), ds_path=os.path.join("/content", "data/Office31"))
 print("--Source: Amazon--")
 # define training data
 source_dataloader = {'train': amazon_halfloader, 'val': amazon_half2loader}
