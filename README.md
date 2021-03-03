@@ -22,8 +22,7 @@ from model.model_construct import Model_Construct
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 Model_Construct(num_classes).to(device)
-"""
-  -----------------
+  """
   num_classes: the number of classes in the dataset (e.g. num_classes=31 for "Office31" and num_classes=10 for "MNIST/SVHN")
   """
 ```
@@ -35,8 +34,7 @@ from data.preprocess import load_ds
 
 load_ds(datasets, batch_size, num_workers, grayscale, normalize, split_path, ds_path)
 
-"""
-  -----------------
+  """
   datasets: either 'office31' or 'mnist/svhn'
   batch_size: batch size for dataloaders
   num_workers: number of workers for dataloaders
@@ -66,8 +64,7 @@ source_dataloader = {'train': amazon_halfloader, 'val': amazon_half2loader}
 from train import train_model, predict_batchwise
 
 train_model(model, source_dataloader, num_epochs, lr,  weight_decay, instNorm)
-"""
-      -----------------
+      """
       model: model to train
       dataloaders: dictionary of 'train'/'val' dataloaders
       num_epochs: number of epochs
@@ -79,19 +76,18 @@ train_model(model, source_dataloader, num_epochs, lr,  weight_decay, instNorm)
       Returns:
       -----------------
       trained model and validation accuracies history
-    """
+      """
 
 predict_batchwise(model, dataloader)
 
-"""
-      -----------------
+      """
       model: trained model
       dataloader: target test dataloader
 
       Returns:
       -----------------
       predictions accuracy
-    """
+      """
    ```
     
 # Example # 
@@ -109,11 +105,6 @@ print("--Source: Amazon--")
 source_dataloader = {'train': amazon_halfloader, 'val': amazon_half2loader}
 # train
 amazon_model, amazon_hist = train_model(model_31, source_dataloader, num_epochs=200, lr=0.001,  weight_decay=0.0001, instNorm=False)
-#save model
-model_save_name = 'amazon_model.pt'
-path = F"/{model_save_name}"
-torch.save(amazon_model.state_dict(), path)
-print("model saved")
 # test
 print("--Target: Webcam, DSLR--")
 print("Prediction on webcam:")
@@ -132,11 +123,6 @@ print("--Source: MNIST--")
 #train
 source_dataloader = {'train': mnist_trainloader, 'val': mnist_testloader}
 mnist_model, mnist_hist = train_model(model_10, source_dataloader, num_epochs=40, lr=0.00025, weight_decay=0, instNorm=True)
-#save model
-model_save_name = 'mnist_model.pt'
-path = F"/{model_save_name}"
-torch.save(mnist_model.state_dict(), path)
-print("model saved")
 #test
 print("--Target: SVHN--")
 print("-Prediction on SVHN:")
@@ -149,9 +135,9 @@ Running the parameters from the examples above (e.g. num_epochs, lr ...), the fo
 
 A &#8594; W      | D &#8594; W      | W &#8594; D      | A &#8594; D      | D &#8594; A      | W &#8594; A      | Avg
 ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | -------------
-76.9          | 91.1          | 96.8          | 81.7          | 55.3          | 57.4          | 76.5
+~76.9          | ~91.1          | ~96.8          | ~81.7          | ~55.3          | ~57.4          | ~76.5
 
 SVHN &#8594; MNIST      | MNIST &#8594; SVHN     | Avg
 -------------        | -------------       | ------------- 
-67.9                 | 20                  | 43.95      
+~67.9                 | ~20                  | ~43.95      
 
