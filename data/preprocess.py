@@ -1,9 +1,12 @@
 import os
-import cv2
-import numpy as np
 import torch
 import torchvision
 import torchvision.transforms as transforms
+import numpy as np
+import cv2
+import scipy
+
+
 from data.office31_build import build_dataset
 
 
@@ -98,6 +101,13 @@ def load_ds(datasets="office31", batch_size=64, num_workers=4, grayscale=False, 
         return amazon_loader, amazon_halfloader, amazon_half2loader, webcam_loader, webcam_halfloader, webcam_half2loader, dslr_loader, dslr_halfloader, dslr_half2loader
 
     elif datasets == "mnist/svhn":
+
+        # hotfix for mnist download error
+        # spurce https://github.com/pytorch/vision/issues/1938
+        from six.moves import urllib
+        opener = urllib.request.build_opener()
+        opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+        urllib.request.install_opener(opener)
 
         mnist_trainset = torchvision.datasets.MNIST("MNIST/processed/training.pt", train=True, transform=transform_train,
                                                     download=True)
