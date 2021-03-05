@@ -115,12 +115,6 @@ predict_batchwise(amazon_model, dslr_loader)
 The following benchmarks the model on SVHN/MNIST (MNIST to SVHN)
 
 ```python
-#hotfix for https://github.com/pytorch/vision/issues/1938
-from six.moves import urllib
-opener = urllib.request.build_opener()
-opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-urllib.request.install_opener(opener)
-
 #load model
 model_10 = Model_Construct(num_classes=10).to(device)
 #load dataloaders
