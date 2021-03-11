@@ -104,10 +104,10 @@ def load_ds(datasets="office31", batch_size=64, num_workers=4, grayscale=False, 
 
         # hotfix for mnist download error
         # spurce https://github.com/pytorch/vision/issues/1938
-        from six.moves import urllib
-        opener = urllib.request.build_opener()
-        opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-        urllib.request.install_opener(opener)
+        # from six.moves import urllib
+        # opener = urllib.request.build_opener()
+        # opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+        # urllib.request.install_opener(opener)
 
         mnist_trainset = torchvision.datasets.MNIST("MNIST/processed/training.pt", train=True, transform=transform_train,
                                                     download=True)
