@@ -1,3 +1,6 @@
+## resnet50_ft ##
+Finetuning Resnet50 and benchmarking it on transfer tasks within Office31 and between SVHN and MNIST
+
 ## Requirements ##
 
 matplotlib==3.2.2  
@@ -133,3 +136,15 @@ print("--Target: SVHN--")
 print("-Prediction on SVHN:")
 predict_batchwise(mnist_model, svhn_testloader)
 ```  
+
+ # Performance #
+
+Running the parameters from the examples above (e.g. num_epochs, lr ...), the following results are returned :
+
+A &#8594; W      | D &#8594; W      | W &#8594; D      | A &#8594; D      | D &#8594; A      | W &#8594; A      | Avg
+------------- | ------------- | ------------- | ------------- | ------------- | ------------- | -------------
+78.2(±0.7)         | 90.4(±1.0)  | 96.8(±1.0)   | 79.7(±1.3)        | 53.3(±1.8)   | 57.0(±1.0)     | 75.9(±1.1)
+
+SVHN &#8594; MNIST      | MNIST &#8594; SVHN     | Avg
+-------------        | -------------       | ------------- 
+~73.3                | ~20.0                  | ~46.6    
