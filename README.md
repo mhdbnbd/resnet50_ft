@@ -11,6 +11,14 @@ requests==2.23.0
 torchvision==0.8.2+cu101  
 torch==1.7.1+cu101
 
+To be installed using the following commands:
+
+pip install matplotlib
+pip install opencv-python
+pip install scipy
+pip install requests
+pip install torch torchvision (Or [equivalent](https://pytorch.org/get-started/locally/))
+
 ## Run code ##
 
 
@@ -127,17 +135,4 @@ mnist_model, mnist_hist = train_model(model_10, source_dataloader, num_epochs=40
 print("--Target: SVHN--")
 print("-Prediction on SVHN:")
 predict_batchwise(mnist_model, svhn_testloader)
-```
-
-# Performance #
-
-Running the parameters from the examples above (e.g. num_epochs, lr ...), the following results are returned :
-
-A &#8594; W      | D &#8594; W      | W &#8594; D      | A &#8594; D      | D &#8594; A      | W &#8594; A      | Avg
-------------- | ------------- | ------------- | ------------- | ------------- | ------------- | -------------
-78.2(±0.7)         | 90.4(±1.0)  | 96.8(±1.0)   | 79.7(±1.3)        | 53.3(±1.8)   | 57.0(±1.0)     | 75.9(±1.1)
-
-SVHN &#8594; MNIST      | MNIST &#8594; SVHN     | Avg
--------------        | -------------       | ------------- 
-~73.3                | ~20.0                  | ~46.6      
-
+```  
