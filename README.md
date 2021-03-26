@@ -1,6 +1,3 @@
-## resnet50_ft ##
-Finetuning Resnet50 and benchmarking it on transfer tasks within Office31 and between SVHN and MNIST
-
 ## Requirements ##
 
 matplotlib==3.2.2  
