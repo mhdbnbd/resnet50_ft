@@ -11,14 +11,6 @@ requests==2.23.0
 torchvision==0.8.2+cu101  
 torch==1.7.1+cu101
 
-To be installed using the following commands:
-
-pip install matplotlib  
-pip install opencv-python  
-pip install scipy  
-pip install requests  
-pip install torch torchvision (Or [equivalent](https://pytorch.org/get-started/locally/))
-
 ## Run code ##
 
 
